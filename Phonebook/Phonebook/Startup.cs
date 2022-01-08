@@ -11,6 +11,9 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Phonebook.Contacts.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
+using Phonebook.Contacts.Core.GenericRepository;
+using Phonebook.Contacts.Core.Repository;
+using AutoMapper;
 
 namespace Phonebook
 {
@@ -27,12 +30,14 @@ namespace Phonebook
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             // Configuration EF Core
             services.AddDbContext<ContactsDBContext>(options =>
             {
                 options.UseSqlServer(Configuration.GetConnectionString("AppConnection"));
             });
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<IContactsRepository, ContactsRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

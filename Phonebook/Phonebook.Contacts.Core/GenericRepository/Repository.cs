@@ -26,15 +26,16 @@
         #endregion
 
         #region Methods
-        public virtual void Add(T entity)
+        public async virtual Task<T> Add(T entity)
         {
-            this._dbSet.Add(entity);
+            var ent = await this._dbSet.AddAsync(entity);
+            return ent.Entity;
         }
 
         public async Task<T> Get(Int64 id)
         {
-            var objectFind = this._dbSet.Find(id);
-            return await Task.Factory.StartNew(() => objectFind);
+            var objectFind = await this._dbSet.FindAsync(id);
+            return objectFind;
         }
 
         public async Task<IEnumerable<T>> GetAll(Expression<Func<T, bool>> filter = null, Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null, string includeProperties = null)
@@ -75,19 +76,21 @@
             return query.FirstOrDefaultAsync();
         }
 
-        public void Remove(long id)
+        public async Task<T> Remove(long id)
         {
-            var entityRemove = this._dbSet.Find(id);
+            var entityRemove = await this._dbSet.FindAsync(id);
             Remove(entityRemove);
+            return entityRemove;
         }
 
         public void Remove(T entity)
         {
-            this._dbSet.Remove(entity);
+           this._dbSet.Remove(entity);
         }
 
-        public virtual void Update(T entity)
-        {
+        public virtual T Update(T entity)
+        {            
+            return entity;
         }
         #endregion
     }

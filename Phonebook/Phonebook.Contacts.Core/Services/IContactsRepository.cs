@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Phonebook.Contacts.Core.Repository
+﻿namespace Phonebook.Contacts.Core.Repository
 {
-    interface IContactsRepository
+    using Phonebook.Contacts.Core.GenericRepository;
+    using Phonebook.Contacts.Infrastructure.Data;
+
+    public interface IContactsRepository : IRepository<Infrastructure.Data.Contacts>
     {
+        Contacts Update(Infrastructure.Data.Contacts entity);
     }
 }

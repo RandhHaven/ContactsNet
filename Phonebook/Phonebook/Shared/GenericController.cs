@@ -2,16 +2,16 @@
 {
     using Microsoft.AspNetCore.Mvc;
 
-    public class GenericController<TUIService> : ControllerBase
+    public class GenericController<TUIServiceWork> : ControllerBase
     {
         #region Properties
 
-        protected TUIService UIService { get; private set; }
+        protected TUIServiceWork UIService { get; private set; }
 
         #endregion
 
         #region Builds
-        protected GenericController(TUIService uiService)
+        protected GenericController(TUIServiceWork uiService)
         {
             this.UIService = uiService;
         }

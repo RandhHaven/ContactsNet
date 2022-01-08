@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Phonebook.Contacts.Infrastructure\Phonebook.Contacts.Infrastructure.csproj" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.0" />
+    <ProjectReference Include="..\Phonebook.Contacts.Core\Phonebook.Contacts.Core.csproj" />
   </ItemGroup>
 </Project>

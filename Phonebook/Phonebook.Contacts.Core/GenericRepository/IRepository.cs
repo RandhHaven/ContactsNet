@@ -20,10 +20,12 @@
             Expression<Func<T, bool>> filter,
             String includeProperties = null);
 
-        void Add(T entity);
+        Task<T> Add(T entity);
 
-        void Remove(Int64 id);
+        Task<T> Remove(Int64 id);
 
         void Remove(T entity);
+
+
     }
 }
