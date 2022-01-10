@@ -4,11 +4,11 @@
     using Phonebook.Contacts.Infrastructure.Data;
     using System;
 
-    public class ContactsRepository : Repository<Contacts>, IContactsRepository
+    public class ContactRepository : Repository<Contacts>, IContactRepository
     {
         private readonly ContactsDBContext _databaseContext;
 
-        public ContactsRepository(ContactsDBContext databaseContext) : base(databaseContext)
+        public ContactRepository(ContactsDBContext databaseContext) : base(databaseContext)
         {
             this._databaseContext = databaseContext ?? throw new ArgumentNullException(nameof(databaseContext));
         }

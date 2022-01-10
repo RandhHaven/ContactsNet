@@ -5,6 +5,6 @@
 
     public interface IUnitOfWork : IDisposable
     {
-        IContactsRepository _IContactsRepository { get; set; }
+        IContactRepository _IContactsRepository { get; set; }
     }
 }

@@ -3,8 +3,8 @@
     using Phonebook.Contacts.Core.GenericRepository;
     using Phonebook.Contacts.Infrastructure.Data;
 
-    public interface IContactsRepository : IRepository<Infrastructure.Data.Contacts>
+    public interface IContactRepository : IRepository<Contacts>
     {
-        Contacts Update(Infrastructure.Data.Contacts entity);
+        Contacts Update(Contacts entity);
     }
 }

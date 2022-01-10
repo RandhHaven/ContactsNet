@@ -1,12 +1,12 @@
 ﻿namespace Phonebook.Api.Contacts.Controllers
 {
+    using System;
     using AutoMapper;
     using Microsoft.AspNetCore.Mvc;
     using Phonebook.Api.Contacts.Shared;
     using Phonebook.Contacts.Core.Entities;
     using Phonebook.Contacts.Core.GenericRepository;
     using Phonebook.Contacts.Infrastructure.Data;
-    using System;
     using System.Threading.Tasks;
 
     [Route("api/[controller]")]
@@ -27,7 +27,7 @@
         public async Task<IActionResult> GetContacts()
         {
             var contacts = await this.UIService._IContactsRepository.GetAll();
-            return Ok(contacts);
+            return Ok(_mapper.Map<ContactsEntity>(contacts));
         }
 
         // POST: api/Auto

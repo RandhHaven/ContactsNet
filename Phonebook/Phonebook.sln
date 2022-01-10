@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30517.126
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Phonebook.Contacts.Api", "Phonebook\Phonebook.Contacts.Api.csproj", "{B57ED969-ABD9-48FC-ABBA-5BFE7D274D1D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Phonebook.Contacts.Api", "Phonebook\Phonebook.Contacts.Api.csproj", "{B57ED969-ABD9-48FC-ABBA-5BFE7D274D1D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Phonebook.Contacts.Core", "Phonebook.Contacts.Core\Phonebook.Contacts.Core.csproj", "{88243A5F-F223-4DD8-933E-33D682AC4E8A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Phonebook.Contacts.Core", "Phonebook.Contacts.Core\Phonebook.Contacts.Core.csproj", "{88243A5F-F223-4DD8-933E-33D682AC4E8A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Phonebook.Contacts.Infrastructure", "Phonebook.Contacts.Infrastructure\Phonebook.Contacts.Infrastructure.csproj", "{353B177B-FA47-4696-934C-EB3F4F977194}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Phonebook.Contacts.Infrastructure", "Phonebook.Contacts.Infrastructure\Phonebook.Contacts.Infrastructure.csproj", "{353B177B-FA47-4696-934C-EB3F4F977194}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Phonebook.Contacts.Api.Test", "Phonebook.Contacts.Api.Test\Phonebook.Contacts.Api.Test.csproj", "{546F5069-FCAE-4B13-A9D5-F180C04523EE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Phonebook.Contacts.Api.Test", "Phonebook.Contacts.Api.Test\Phonebook.Contacts.Api.Test.csproj", "{546F5069-FCAE-4B13-A9D5-F180C04523EE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

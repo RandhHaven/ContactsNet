@@ -14,6 +14,8 @@ using Microsoft.EntityFrameworkCore;
 using Phonebook.Contacts.Core.GenericRepository;
 using Phonebook.Contacts.Core.Repository;
 using AutoMapper;
+using Phonebook.Contacts.Core.Services;
+using Phonebook.Contacts.Core.Dapper;
 
 namespace Phonebook
 {
@@ -37,7 +39,9 @@ namespace Phonebook
                 options.UseSqlServer(Configuration.GetConnectionString("AppConnection"));
             });
             services.AddScoped<IUnitOfWork, UnitOfWork>();
-            services.AddScoped<IContactsRepository, ContactsRepository>();
+            services.AddScoped<IContactRepository, ContactRepository>();
+            services.AddScoped<IGenericDapper, GenericDapper>();
+            services.AddScoped<IContactDapper, ContactDapper>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
