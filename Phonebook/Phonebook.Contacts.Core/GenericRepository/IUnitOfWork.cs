@@ -6,5 +6,7 @@
     public interface IUnitOfWork : IDisposable
     {
         IContactRepository _IContactsRepository { get; set; }
+
+        void Commit();
     }
 }

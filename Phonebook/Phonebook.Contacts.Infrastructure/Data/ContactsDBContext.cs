@@ -34,14 +34,16 @@ namespace Phonebook.Contacts.Infrastructure.Data
         {
             modelBuilder.Entity<Contacts>(entity =>
             {
-                entity.HasNoKey();
+                entity.HasKey(e => e.ContactId);
+
+                entity.Property(e => e.ContactId)
+                    .HasColumnName("ContactID")
+                    .ValueGeneratedNever();
 
                 entity.Property(e => e.Company)
                     .IsRequired()
                     .HasMaxLength(100)
                     .IsUnicode(false);
-
-                entity.Property(e => e.ContactId).HasColumnName("ContactID");
 
                 entity.Property(e => e.Email)
                     .HasMaxLength(100)

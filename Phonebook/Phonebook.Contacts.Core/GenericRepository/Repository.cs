@@ -2,7 +2,6 @@
 {
     using Microsoft.EntityFrameworkCore;
     using Phonebook.Contacts.Core.GenericRepository;
-    using Phonebook.Contacts.Infrastructure.Data;
     using System;
     using System.Collections.Generic;
     using System.Linq;
@@ -19,8 +18,7 @@
         #region Build
         public Repository(DbContext _databaseContext)
         {
-            databaseContext = _databaseContext
-                ?? throw new ArgumentNullException(nameof(_databaseContext));
+            databaseContext = _databaseContext ?? throw new ArgumentNullException(nameof(_databaseContext));
             this._dbSet = databaseContext.Set<T>();
         }
         #endregion
@@ -32,7 +30,7 @@
             return ent.Entity;
         }
 
-        public async Task<T> Get(Int64 id)
+        public async Task<T> Get(Guid id)
         {
             var objectFind = await this._dbSet.FindAsync(id);
             return objectFind;

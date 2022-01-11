@@ -38,7 +38,7 @@ namespace Phonebook.Contacts.Core.Dapper
             using IDbConnection db = new SqlConnection(_config.GetConnectionString(Connectionstring));
             return db.Query<T>(sp, parms, commandType: commandType).FirstOrDefault();
         }
-
+        
         public List<T> GetAll<T>(string sp, DynamicParameters parms, CommandType commandType = CommandType.StoredProcedure)
         {
             using IDbConnection db = new SqlConnection(_config.GetConnectionString(Connectionstring));
@@ -117,6 +117,5 @@ namespace Phonebook.Contacts.Core.Dapper
 
             return result;
         }
-
     }
 }

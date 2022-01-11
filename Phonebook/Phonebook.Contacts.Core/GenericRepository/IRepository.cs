@@ -9,7 +9,7 @@
 
     public interface IRepository<T>
     {
-        Task<T> Get(Int64 id);
+        Task<T> Get(Guid id);
 
         Task<IEnumerable<T>> GetAll(
             Expression<Func<T, bool>> filter = null,

@@ -8,17 +8,22 @@
     using Phonebook.Contacts.Core.GenericRepository;
     using Phonebook.Contacts.Infrastructure.Data;
     using System.Threading.Tasks;
+    using Phonebook.Contacts.Core.Services;
+    using System.Collections.Generic;
+    using System.Linq;
 
     [Route("api/[controller]")]
     [ApiController]
     public sealed class ContactsController : GenericController<IUnitOfWork>
     {
         private readonly IMapper _mapper;
+        private readonly IContactDapper _IContactDapper;
 
         #region Builds
-        public ContactsController(IUnitOfWork uiService, IMapper mapper) : base(uiService)
+        public ContactsController(IUnitOfWork uiService, IMapper mapper, IContactDapper iContactDapper) : base(uiService)
         {
             this._mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
+            this._IContactDapper = iContactDapper ?? throw new ArgumentNullException(nameof(iContactDapper));
         }
         #endregion    
 
@@ -26,8 +31,18 @@
         [HttpGet]
         public async Task<IActionResult> GetContacts()
         {
-            var contacts = await this.UIService._IContactsRepository.GetAll();
-            return Ok(_mapper.Map<ContactsEntity>(contacts));
+            var listContacts = await this.UIService._IContactsRepository.GetAll();
+            return Ok(_mapper.Map<List<Contacts>, List<ContactsEntity>>(listContacts.ToList()));
+            //var contacts = await _IContactDapper.GetAll();
+            //return contacts;
+        }
+
+        // GET: api/Contacts/id
+        [HttpGet("{id}")]
+        public async Task<ActionResult<ContactsEntity>> GetFilter(Guid id)
+        {
+            var contact = await this.UIService._IContactsRepository.Get(id);
+            return Ok(_mapper.Map<Contacts, ContactsEntity>(contact));
         }
 
         // POST: api/Auto
@@ -36,17 +51,23 @@
         {
             if (ModelState.IsValid && !Object.Equals(request, null))
             {
-                var contacts = await UIService._IContactsRepository.Add(_mapper.Map<Contacts>(request));
-                return Ok(_mapper.Map<ContactsEntity>(contacts));
+                var contacts = await this.UIService._IContactsRepository.Add(_mapper.Map<ContactsEntity, Contacts>(request));
+                this.UIService.Commit();
+                return Ok(_mapper.Map<Contacts, ContactsEntity>(contacts));
             }
             return BadRequest(ModelState);
         }
 
         // PUT: api/UpdateContact/id
         [HttpPut("{id}")]
-        public void UpdateContact(int id, [FromBody] ContactsEntity contact)
+        public IActionResult UpdateContact(int id, [FromBody] ContactsEntity request)
         {
-            this.UIService._IContactsRepository.Update(_mapper.Map<Contacts>(contact));
+            if (ModelState.IsValid && !Object.Equals(request, null))
+            {
+                var contact = this.UIService._IContactsRepository.Update(_mapper.Map<ContactsEntity, Contacts>(request));
+                return Ok(request);
+            }
+            return BadRequest(ModelState);
         }
 
         // PUT: api/DeleteContact/id
