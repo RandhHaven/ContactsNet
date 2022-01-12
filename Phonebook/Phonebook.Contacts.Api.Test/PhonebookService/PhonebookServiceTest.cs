@@ -10,31 +10,20 @@
     using Xunit;
 
     public sealed class PhonebookServiceTest : BaseServiceTest
-    {
-        private IUnitOfWork uiService;
+    {       
         public PhonebookServiceTest()
         {
         }
 
         [Fact]
         public async void GetContactById()
-        {
-
-            var mockContexto = CrearContexto();
-
-            var mapConfig = new MapperConfiguration(cfg =>
-            {
-                cfg.AddProfile(new MappingTest());
-            });
-
-            var mapper = mapConfig.CreateMapper();
-
+        {           
             var request = new Contacts()
             {
-                ContactId = new Guid("553D1943-6FAC-42D9-7B8F-08D9C8D18BF0")
+                ContactId = new Guid("00000000-0000-0000-0000-000000000000")
             };
 
-            this.uiService = new UnitOfWork(mockContexto.Object);
+            this.uiService = new UnitOfWork(this.dbContext);
             var contact = await this.uiService._IContactsRepository.Get(request.ContactId);
             
             Assert.NotNull(contact);
@@ -44,25 +33,11 @@
         [Fact]
         public async void GetContacts()
         {
-            //1. Emular a la instancia de entity framework core - ContextoLibreria
-            // para emular la acciones y eventos de un objeto en un ambiente de unit test 
-            //utilizamos objetos de tipo mock
-
-            var mockContexto = CrearContexto();
-
-            // 2 Emular al mapping IMapper
-
-            var mapConfig = new MapperConfiguration(cfg =>
-            {
-                cfg.AddProfile(new MappingTest());
-            });
-
-            var mapper = mapConfig.CreateMapper();
-
-            //3. Instanciar a la clase servicio
-
-            this.uiService = new UnitOfWork(mockContexto.Object);
-            var contacts = await this.uiService._IContactsRepository.GetAll();            
+            //1. Instanciar a la clase servicio
+            this.uiService = new UnitOfWork(this.dbContext);
+            var contacts = await this.uiService._IContactsRepository.GetAll();
+            
+            //3. Assert
             Assert.True(contacts.Any());
         }
 
@@ -72,16 +47,18 @@
             System.Diagnostics.Debugger.Launch();
 
             var options = new DbContextOptionsBuilder<ContactsDBContext>()
-                .UseInMemoryDatabase(databaseName: "BaseDatosLibro")
+                .UseInMemoryDatabase(databaseName: "ContactsDB")
                 .Options;
 
             var mockContexto = new ContactsDBContext(options);
             var request = new Contacts()
             {
-                ContactId = new Guid(),
-                FirtsName = "",
-                LastName = "",
-
+                ContactId = Guid.NewGuid(),
+                FirtsName = "FirrtsName",
+                LastName = "LastName",
+                Company = "New Company",
+                Email = "New Email",
+                PhoneNumber = "232313222"
             };
             this.uiService = new UnitOfWork(mockContexto);
             var saveContact = await this.uiService._IContactsRepository.Add(request);

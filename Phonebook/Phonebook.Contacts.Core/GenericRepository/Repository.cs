@@ -11,15 +11,15 @@
     public class Repository<T> : IRepository<T> where T : class
     {
         #region Properties
-        private readonly DbContext databaseContext;
-        internal DbSet<T> _dbSet;
+        private readonly DbContext dbContext;
+        public DbSet<T> _dbSet;
         #endregion
 
         #region Build
-        public Repository(DbContext _databaseContext)
+        public Repository(DbContext _dbContext)
         {
-            databaseContext = _databaseContext ?? throw new ArgumentNullException(nameof(_databaseContext));
-            this._dbSet = databaseContext.Set<T>();
+            this.dbContext = _dbContext ?? throw new ArgumentNullException(nameof(_dbContext));
+            this._dbSet = dbContext.Set<T>();
         }
         #endregion
 
@@ -74,7 +74,7 @@
             return query.FirstOrDefaultAsync();
         }
 
-        public async Task<T> Remove(long id)
+        public async Task<T> Remove(Guid id)
         {
             var entityRemove = await this._dbSet.FindAsync(id);
             Remove(entityRemove);

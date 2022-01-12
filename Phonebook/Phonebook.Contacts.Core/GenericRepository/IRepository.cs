@@ -22,7 +22,7 @@
 
         Task<T> Add(T entity);
 
-        Task<T> Remove(Int64 id);
+        Task<T> Remove(Guid id);
 
         void Remove(T entity);
 

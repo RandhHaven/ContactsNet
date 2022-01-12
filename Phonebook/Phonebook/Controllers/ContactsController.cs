@@ -60,11 +60,12 @@
 
         // PUT: api/UpdateContact/id
         [HttpPut("{id}")]
-        public IActionResult UpdateContact(int id, [FromBody] ContactsEntity request)
+        public IActionResult UpdateContact([FromBody] ContactsEntity request)
         {
             if (ModelState.IsValid && !Object.Equals(request, null))
             {
                 var contact = this.UIService._IContactsRepository.Update(_mapper.Map<ContactsEntity, Contacts>(request));
+                this.UIService.Commit();
                 return Ok(request);
             }
             return BadRequest(ModelState);
@@ -72,9 +73,10 @@
 
         // PUT: api/DeleteContact/id
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteContact(int id)
+        public async Task<IActionResult> DeleteContact(Guid id)
         {
             var removeEntity = await this.UIService._IContactsRepository.Remove(id);
+            this.UIService.Commit();
             return Ok(_mapper.Map<ContactsEntity>(removeEntity));
         }
     }

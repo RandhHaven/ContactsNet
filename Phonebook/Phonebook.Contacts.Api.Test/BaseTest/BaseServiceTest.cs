@@ -5,12 +5,20 @@
     using System.Linq;
     using GenFu;
     using Microsoft.EntityFrameworkCore;
-    using Moq;
+    using Phonebook.Contacts.Core.GenericRepository;
     using Phonebook.Contacts.Infrastructure.Data;
 
     public class BaseServiceTest
     {
-        private IEnumerable<Contacts> ObtenerDataPrueba()
+        protected IUnitOfWork uiService;
+        protected ContactsDBContext dbContext;
+
+        public BaseServiceTest()
+        {
+            this.dbContext = CreateDBContext();
+        }
+
+        private IEnumerable<Contacts> GetDataTest()
         {
             A.Configure<Contacts>()
                 .Fill(x => x.FirtsName).AsFirstName()
@@ -20,34 +28,40 @@
                 .Fill(x => x.PhoneNumber).AsPhoneNumber()
                 .Fill(x => x.ContactId, () => { return Guid.NewGuid(); });
 
-
             var lista = A.ListOf<Contacts>(10);
             lista[0].ContactId = Guid.Empty;
 
             return lista;
         }
 
-        protected Mock<ContactsDBContext> CrearContexto()
+        protected ContactsDBContext CreateDBContext()
         {
+            var options = new DbContextOptionsBuilder<ContactsDBContext>()
+                 .UseInMemoryDatabase(databaseName: "ContactsDB")
+                 .Options;
 
-            var dataPrueba = ObtenerDataPrueba().AsQueryable();
+            var mockContexto = new ContactsDBContext(options);
 
-            var dbSet = new Mock<DbSet<Contacts>>();
-            dbSet.As<IQueryable<Contacts>>().Setup(x => x.Provider).Returns(dataPrueba.Provider);
-            dbSet.As<IQueryable<Contacts>>().Setup(x => x.Expression).Returns(dataPrueba.Expression);
-            dbSet.As<IQueryable<Contacts>>().Setup(x => x.ElementType).Returns(dataPrueba.ElementType);
-            dbSet.As<IQueryable<Contacts>>().Setup(x => x.GetEnumerator()).Returns(dataPrueba.GetEnumerator());
+            var data = this.GetDataTest().AsQueryable();
+            if (!mockContexto.Contacts.Any())
+            {
+                foreach (var item in data)
+                {
+                    mockContexto.Add(new Contacts
+                    {
+                        ContactId = item.ContactId,
+                        FirtsName = item.FirtsName,
+                        LastName = item.LastName,
+                        Company = item.Company,
+                        Email = item.Email,
+                        PhoneNumber = item.PhoneNumber
+                    });
+                }
+            }
+            
+            mockContexto.SaveChanges();
 
-            dbSet.As<IAsyncEnumerable<Contacts>>().Setup(x => x.GetAsyncEnumerator(new System.Threading.CancellationToken()))
-            .Returns(new AsyncEnumerator<Contacts>(dataPrueba.GetEnumerator()));
-
-
-            dbSet.As<IQueryable<Contacts>>().Setup(x => x.Provider).Returns(new AsyncQueryProvider<Contacts>(dataPrueba.Provider));
-
-
-            var contexto = new Mock<ContactsDBContext>();
-            contexto.Setup(x => x.Contacts).Returns(dbSet.Object);
-            return contexto;
-        }
+            return mockContexto;
+        }       
     }
 }
