@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Phonebook.Contacts.Infrastr
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Phonebook.Contacts.Api.Test", "Phonebook.Contacts.Api.Test\Phonebook.Contacts.Api.Test.csproj", "{546F5069-FCAE-4B13-A9D5-F180C04523EE}"
 EndProject
-Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{18220C66-E90B-4A2A-A516-82A2A9AD200B}"
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{CF4F655B-B661-442A-AF89-561D2CBB18A9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,10 +35,10 @@ Global
 		{546F5069-FCAE-4B13-A9D5-F180C04523EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{546F5069-FCAE-4B13-A9D5-F180C04523EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{546F5069-FCAE-4B13-A9D5-F180C04523EE}.Release|Any CPU.Build.0 = Release|Any CPU
-		{18220C66-E90B-4A2A-A516-82A2A9AD200B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{18220C66-E90B-4A2A-A516-82A2A9AD200B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{18220C66-E90B-4A2A-A516-82A2A9AD200B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{18220C66-E90B-4A2A-A516-82A2A9AD200B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CF4F655B-B661-442A-AF89-561D2CBB18A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CF4F655B-B661-442A-AF89-561D2CBB18A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CF4F655B-B661-442A-AF89-561D2CBB18A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CF4F655B-B661-442A-AF89-561D2CBB18A9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
