@@ -45,7 +45,7 @@
             return Ok(_mapper.Map<Contacts, ContactsEntity>(contact));
         }
 
-        // POST: api/Auto
+        // POST: api/Contacts
         [HttpPost]
         public async Task<IActionResult> CreateContact([FromBody] ContactsEntity request)
         {
@@ -58,20 +58,19 @@
             return BadRequest(ModelState);
         }
 
-        // PUT: api/UpdateContact/id
+        // PUT: api/Contacts/id
         [HttpPut("{id}")]
-        public IActionResult UpdateContact([FromBody] ContactsEntity request)
+        public IActionResult UpdateContact(Guid id, [FromBody] ContactsEntity request)
         {
             if (ModelState.IsValid && !Object.Equals(request, null))
             {
-                var contact = this.UIService._IContactsRepository.Update(_mapper.Map<ContactsEntity, Contacts>(request));
-                this.UIService.Commit();
+                var contact = this.UIService._IContactsRepository.Update(id, _mapper.Map<ContactsEntity, Contacts>(request));
                 return Ok(request);
             }
             return BadRequest(ModelState);
         }
 
-        // PUT: api/DeleteContact/id
+        // PUT: api/Contacts/id
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteContact(Guid id)
         {

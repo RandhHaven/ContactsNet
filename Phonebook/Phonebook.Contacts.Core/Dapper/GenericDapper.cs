@@ -18,6 +18,7 @@ namespace Phonebook.Contacts.Core.Dapper
         {
             _config = config;
         }
+
         public void Dispose()
         {
         }

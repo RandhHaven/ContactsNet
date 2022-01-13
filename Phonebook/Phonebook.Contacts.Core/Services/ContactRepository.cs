@@ -15,9 +15,9 @@
             this._databaseContext = databaseContext ?? throw new ArgumentNullException(nameof(databaseContext));
         }
 
-        public override Contacts Update(Contacts entity)
+        public override Contacts Update(Guid id, Contacts entity)
         {
-            var update = _databaseContext.Contacts.FirstOrDefault(obj => obj.ContactId == entity.ContactId);            
+            var update = _databaseContext.Contacts.FirstOrDefault(obj => obj.ContactId == id);            
             update.FirtsName = entity.FirtsName;
             update.LastName = entity.LastName;
             update.Email = entity.Email;

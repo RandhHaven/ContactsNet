@@ -86,7 +86,7 @@
            this._dbSet.Remove(entity);
         }
 
-        public virtual T Update(T entity)
+        public virtual T Update(Guid id, T entity)
         {            
             return entity;
         }

@@ -2,9 +2,10 @@
 {
     using Phonebook.Contacts.Core.GenericRepository;
     using Phonebook.Contacts.Infrastructure.Data;
+    using System;
 
     public interface IContactRepository : IRepository<Contacts>
     {
-        Contacts Update(Contacts entity);
+        Contacts Update(Guid id, Contacts entity);
     }
 }
