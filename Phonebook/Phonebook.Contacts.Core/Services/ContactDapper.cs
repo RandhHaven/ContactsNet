@@ -18,13 +18,13 @@
 
         public async Task<ContactsEntity> GetAll()
         {
-            var result = await Task.FromResult(_dapper.Get<ContactsEntity>($"Select * from [Contacts] ", null, commandType: CommandType.Text));
+            var result = await Task.FromResult(_dapper.Get<ContactsEntity>($"Select * from [ContactsDB].[dbo].[Contacts] ", null, commandType: CommandType.Text));
             return result;
         }
 
         public async Task<ContactsEntity> GetById(int Id)
         {
-            var result = await Task.FromResult(_dapper.Get<ContactsEntity>($"Select * from [Contacts] where Id = {Id}", null, commandType: CommandType.Text));
+            var result = await Task.FromResult(_dapper.Get<ContactsEntity>($"Select * from [ContactsDB].[dbo].[Contacts] where Id = {Id}", null, commandType: CommandType.Text));
             return result;
         }
 
@@ -37,7 +37,7 @@
             dbPara.Add("pCompany", data.Company, DbType.String);
             dbPara.Add("pEmail", data.Email, DbType.String);
             dbPara.Add("pPhoneNumber", data.PhoneNumber, DbType.String);
-            var createContact = Task.FromResult(_dapper.Create<ContactsEntity>("[dbo].[SP_Create_Contact]",
+            var createContact = Task.FromResult(_dapper.Create<ContactsEntity>("[dbo].[SP_CreateContact]",
                             dbPara,
                             commandType: CommandType.StoredProcedure));
             return createContact;
@@ -52,7 +52,7 @@
             dbPara.Add("pCompany", data.Company, DbType.String);
             dbPara.Add("pEmail", data.Email, DbType.String);
             dbPara.Add("pPhoneNumber", data.PhoneNumber, DbType.String);
-            var updateArticle = Task.FromResult(_dapper.Update<ContactsEntity>("[dbo].[SP_Update_Contact]",
+            var updateArticle = Task.FromResult(_dapper.Update<ContactsEntity>("[dbo].[SP_UpdateContact]",
                             dbPara,
                             commandType: CommandType.StoredProcedure));
             return updateArticle;

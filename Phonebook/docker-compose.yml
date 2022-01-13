@@ -1,0 +1,13 @@
+version: '3.4'
+
+services:
+  phonebook.contacts.api:
+    image: ${DOCKER_REGISTRY-}phonebookcontactsapi
+    build:
+      context: .
+      dockerfile: Phonebook\Dockerfile
+
+networks:
+    default:
+        external:
+            name: microservicescontacts
