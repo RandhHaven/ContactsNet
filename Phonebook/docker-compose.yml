@@ -8,6 +8,6 @@ services:
       dockerfile: Phonebook/Dockerfile
 
 networks:
-    default:
-        external:
-            name: microservicescontacts
+  default:
+    external:
+      name: microservicescontacts
