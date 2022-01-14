@@ -3,8 +3,7 @@
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "http://localhost:49500",
-      "sslPort": 0
+      "applicationUrl": "http://localhost:49500"
     }
   },
   "$schema": "http://json.schemastore.org/launchsettings.json",
@@ -21,12 +20,12 @@
       "commandName": "Project",
       "launchBrowser": true,
       "launchUrl": "api/Contacts",
+      "applicationUrl": "http://localhost:49500",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
-      },
-      "applicationUrl": "http://localhost:49500"
+      }
     },
-    "Docker (1)": {
+    "Docker": {
       "commandName": "Docker",
       "launchBrowser": true,
       "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}/api/Contacts",

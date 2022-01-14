@@ -3,7 +3,7 @@
   <PropertyGroup Label="Globals">
     <ProjectVersion>2.1</ProjectVersion>
     <DockerTargetOS>Linux</DockerTargetOS>
-    <ProjectGuid>cf4f655b-b661-442a-af89-561d2cbb18a9</ProjectGuid>
+    <ProjectGuid>917172c7-2e63-4dc4-8414-f3a0e1a002fd</ProjectGuid>
     <DockerLaunchAction>LaunchBrowser</DockerLaunchAction>
     <DockerServiceUrl>{Scheme}://localhost:{ServicePort}/api/Contacts</DockerServiceUrl>
     <DockerServiceName>phonebook.contacts.api</DockerServiceName>
