@@ -25,7 +25,5 @@
         Task<T> Remove(Guid id);
 
         void Remove(T entity);
-
-
     }
 }

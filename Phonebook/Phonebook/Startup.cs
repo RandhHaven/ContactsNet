@@ -38,6 +38,7 @@ namespace Phonebook
             {
                 options.UseSqlServer(Configuration.GetConnectionString("AppConnection"));
             });
+            services.AddSwaggerGen();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IContactRepository, ContactRepository>();
             services.AddScoped<IGenericDapper, GenericDapper>();
@@ -51,6 +52,15 @@ namespace Phonebook
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseHttpsRedirection();
+            app.UseSwagger();
+
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Core Phonebook API");
+                c.RoutePrefix = string.Empty;
+            });
 
             app.UseRouting();
 

@@ -18,8 +18,8 @@
     },
     "Phonebook": {
       "commandName": "Project",
+      "dotnetRunMessages": true,
       "launchBrowser": true,
-      "launchUrl": "api/Contacts",
       "applicationUrl": "http://localhost:49500",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"

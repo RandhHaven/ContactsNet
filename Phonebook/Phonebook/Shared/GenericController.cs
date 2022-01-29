@@ -18,7 +18,6 @@
         #endregion
 
         #region Initialization Methods
-        public virtual void OnInitialize() { }
 
         protected virtual void InitializeBehavior()
         {

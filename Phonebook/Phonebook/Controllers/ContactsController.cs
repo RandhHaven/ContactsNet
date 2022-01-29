@@ -38,7 +38,7 @@
         }
 
         // GET: api/Contacts/id
-        [HttpGet("{id}")]
+        [HttpGet("GetById/{id}")]
         public async Task<ActionResult<ContactsEntity>> GetFilter(Guid id)
         {
             var contact = await this.UIService._IContactsRepository.Get(id);
